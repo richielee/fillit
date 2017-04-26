@@ -13,7 +13,7 @@
 #include "../lib/libft.h"
 #include "../includes//fillit.h"
 
-void	ft_check(char *read)
+int	ft_check(char *read)
 {
 	int dot;
 	int hash;
@@ -33,7 +33,8 @@ void	ft_check(char *read)
 		read++;
 	}
 	if (dot < 4)
-		error_msg();
+		return (0);
 	if (dot % 4 || hash % 4 || (end + 1) % 5)
-		error_msg();
+		return (0);
+	return (1);
 }

@@ -25,7 +25,7 @@ typedef struct	s_point
 	int y;
 }				t_point;
 char			*ft_read(char *file);
-void			ft_check(char *s);
+int				ft_check(char *s);
 void			error_msg(void);
 char	**str_truncate(char *str);
 void	ft_print_words_tables(char **tab);

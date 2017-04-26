@@ -10,13 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/libft.h"
 #include "../includes/fillit.h"
-
-void	error_msg(void)
-{
-	ft_putstr("error\n");
-}
 
 int		count_n(char *input)
 {
@@ -37,16 +31,15 @@ int		count_n(char *input)
 int		main(int argc, char **argv)
 {
 	char	*input;
-	int		n;
-	int		x;
 
 	if (argc == 2)
 	{
 		input = ft_read(argv[1]);
-		ft_putstr(input);
-		ft_putstr("testing complete\n");
-		x = (n + 1) / 5;
-		ft_check(input);
+		if (!ft_check(input))
+		{
+			ft_putstr("error\n");
+			return (1);
+		}
 		ft_print_words_tables(str_truncate(input));
 		return (0);
 	}
