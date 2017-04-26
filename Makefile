@@ -19,7 +19,7 @@ INC_DIR = ./includes/
 OBJ_DIR = ./obj/
 
 #src / obj files
-SRC = tetriminos_reader.c main.c ft_check.c
+SRC = tetriminos_reader.c main.c ft_check.c truncate.c ft_print_words_tables.c
 OBJ = $(SRC:.c=.o)
 SRC_POS = $(addprefix $(SRC_DIR),$(SRC))
 

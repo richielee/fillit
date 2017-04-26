@@ -15,25 +15,25 @@
 
 void	ft_check(char *read)
 {
-	int period;
-	int pound;
+	int dot;
+	int hash;
 	int end;
 
-	period = 0;
-	pound = 0;
+	dot = 0;
+	hash = 0;
 	end = 0;
 	while (*read)
 	{
 		if (*read == '.')
-			period++;
+			dot++;
 		else if (*read == '#')
-			pound++;
+			hash++;
 		else if (*read == '\n')
 			end++;
 		read++;
 	}
-	if (period < 4)
+	if (dot < 4)
 		error_msg();
-	if (period % 4 || pound % 4 || (end + 1) % 5)
+	if (dot % 4 || hash % 4 || (end + 1) % 5)
 		error_msg();
 }

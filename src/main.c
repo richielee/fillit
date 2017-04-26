@@ -13,7 +13,6 @@
 #include "../lib/libft.h"
 #include "../includes/fillit.h"
 
-
 void	error_msg(void)
 {
 	ft_putstr("error\n");
@@ -44,11 +43,11 @@ int		main(int argc, char **argv)
 	if (argc == 2)
 	{
 		input = ft_read(argv[1]);
-		n = count_n(input);
-		ft_putnbr(n);
+		ft_putstr(input);
+		ft_putstr("testing complete\n");
 		x = (n + 1) / 5;
-		ft_putnbr(x);
 		ft_check(input);
+		ft_print_words_tables(str_truncate(input));
 		return (0);
 	}
 	else
