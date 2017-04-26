@@ -6,12 +6,12 @@
 /*   By: rili <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 17:18:32 by rili              #+#    #+#             */
-/*   Updated: 2017/04/26 17:20:46 by rili             ###   ########.fr       */
+/*   Updated: 2017/04/26 17:51:48 by rili             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "fillit.h"
+#include "../lib/libft.h"
+#include "../includes/fillit.h"
 
 int		count_n(char *input)
 {

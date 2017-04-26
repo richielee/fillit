@@ -6,12 +6,12 @@
 /*   By: rili <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 16:25:48 by rili              #+#    #+#             */
-/*   Updated: 2017/04/26 17:09:12 by rili             ###   ########.fr       */
+/*   Updated: 2017/04/26 17:51:59 by rili             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "fillit.h"
+#include "../lib/libft.h"
+#include "../includes/fillit.h"
 
 char	*ft_read(char *file)
 {
