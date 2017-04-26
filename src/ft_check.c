@@ -1,29 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rili <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/26 16:22:57 by rili              #+#    #+#             */
-/*   Updated: 2017/04/26 19:44:31 by rili             ###   ########.fr       */
+/*   Created: 2017/04/26 18:31:17 by rili              #+#    #+#             */
+/*   Updated: 2017/04/26 19:42:45 by rili             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
-# include <unistd.h>
-# include <sys/types.h>
-# include <stdlib.h>
-#include <sys/uio.h>
-#include <fcntl.h>
+#include "../lib/libft.h"
+#include "../includes//fillit.h"
 
-typedef struct	s_point
+void	ft_check(char *read)
 {
-	int x;
-	int y;
-}				t_point;
-char			*ft_read(char *file);
-void			ft_check(char *s);
-void			error_msg(void);
-#endif
+	int period;
+	int pound;
+	int end;
+
+	period = 0;
+	pound = 0;
+	end = 0;
+	while (*read)
+	{
+		if (*read == '.')
+			period++;
+		else if (*read == '#')
+			pound++;
+		else if (*read == '\n')
+			end++;
+		read++;
+	}
+	if (period < 4)
+		error_msg();
+	if (period % 4 || pound % 4 || (end + 1) % 5)
+		error_msg();
+}

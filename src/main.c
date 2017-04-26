@@ -6,12 +6,18 @@
 /*   By: rili <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 17:18:32 by rili              #+#    #+#             */
-/*   Updated: 2017/04/26 17:58:17 by rili             ###   ########.fr       */
+/*   Updated: 2017/04/26 19:44:51 by rili             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/libft.h"
 #include "../includes/fillit.h"
+
+
+void	error_msg(void)
+{
+	ft_putstr("error\n");
+}
 
 int		count_n(char *input)
 {
@@ -42,6 +48,7 @@ int		main(int argc, char **argv)
 		ft_putnbr(n);
 		x = (n + 1) / 5;
 		ft_putnbr(x);
+		ft_check(input);
 		return (0);
 	}
 	else
