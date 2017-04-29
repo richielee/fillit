@@ -6,7 +6,7 @@
 /*   By: rili <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 17:18:32 by rili              #+#    #+#             */
-/*   Updated: 2017/04/26 19:44:51 by rili             ###   ########.fr       */
+/*   Updated: 2017/04/29 14:54:12 by rili             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,8 @@ int		main(int argc, char **argv)
 		return (0);
 	}
 	else
+	{
+		ft_putstr("usage: fillit input_file\n");
+	}
 		return (1);
 }
