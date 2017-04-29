@@ -6,7 +6,7 @@
 /*   By: rili <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 16:22:57 by rili              #+#    #+#             */
-/*   Updated: 2017/04/26 19:44:31 by rili             ###   ########.fr       */
+/*   Updated: 2017/04/29 15:30:08 by rili             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,5 @@ int				ft_check(char *s);
 void			error_msg(void);
 char	**str_truncate(char *str);
 void	ft_print_words_tables(char **tab);
+int		ft_abs(int n);
 #endif
