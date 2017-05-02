@@ -24,6 +24,11 @@ typedef struct	s_point
 	int x;
 	int y;
 }				t_point;
+typedef struct	s_board
+{
+	int		size;
+	char	**arr;
+}				t_board;
 char			*ft_read(char *file);
 int				ft_check(char *s);
 void			error_msg(void);

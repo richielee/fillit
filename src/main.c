@@ -31,6 +31,7 @@ int		count_n(char *input)
 int		main(int argc, char **argv)
 {
 	char	*input;
+	t_board	board;
 
 	if (argc == 2)
 	{
@@ -41,6 +42,9 @@ int		main(int argc, char **argv)
 			return (1);
 		}
 		ft_print_words_tables(str_truncate(input));
+		board = solve(str_truncate(input));
+		ft_print_words_tables(board->arr);
+		free(board);
 		return (0);
 	}
 	else
