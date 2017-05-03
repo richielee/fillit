@@ -6,7 +6,7 @@
 /*   By: rili <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 14:14:57 by rili              #+#    #+#             */
-/*   Updated: 2017/05/03 18:57:09 by rili             ###   ########.fr       */
+/*   Updated: 2017/05/03 19:25:25 by rili             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ static void		put_tetris(t_board *board, t_tetri *tetri, int x, int y, char s)
 	mi = tetri->min->x;
 	mj = tetri->min->y;
 	i = mi;
-	while (i < tetri->max->x)
+	while (i <= tetri->max->x)
 	{
 		j = mj;
-		while (j < tetri->max->y)
+		while (j <= tetri->max->y)
 		{
 			if (tetri->graph[i][j] == '#')
 				board->arr[x + i - mi][y + j - mj] = s;
@@ -69,10 +69,10 @@ int		placeable(t_board *board, t_tetri *tetri, int x, int y)
 	mi = tetri->min->x;
 	mj = tetri->min->y;
 	i = mi;
-	while (i < tetri->max->x)
+	while (i <= tetri->max->x)
 	{
 		j = mj;
-		while (j < tetri->max->y)
+		while (j <= tetri->max->y)
 		{
 			if (tetri->graph[i][j] == '#' && \
 					board->arr[x + i - mi][y + j - mj] != '.')
@@ -100,10 +100,10 @@ int			solve_board(t_board *board, t_tetri **tetris, int block, int current)
 	i = 0;
 	h = (tetri->max->x) - (tetri->min->x) + 1;
 	w = (tetri->max->y) - (tetri->min->y) + 1;
-	while (i < board->size - w + 1)
+	while (i < board->size - h + 1)
 	{
 		j = 0;
-		while (j < board->size - h + 1)
+		while (j < board->size - w + 1)
 		{
 			if (placeable(board, tetri, i, j))
 			{
@@ -126,18 +126,11 @@ t_board		*solve(t_tetri **tetris, int block)
 
 	size = 4;
 	board = new_board(size);
-	ft_putstr("new_board assigned\n");
 	while (!solve_board(board, tetris, block, 0))
 	{
-		ft_putstr("current size is :");
-		ft_putnbr(size);
-		ft_putstr("\n");
 		size++;
 		free_board(board);
 		board = new_board(size);
 	}
-	ft_putstr("the size of the board is ");
-	ft_putnbr(size);
-	ft_putstr("\n");
 	return (board);
 }
