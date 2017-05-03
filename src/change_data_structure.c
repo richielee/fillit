@@ -6,7 +6,7 @@
 /*   By: rili <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 15:29:11 by rili              #+#    #+#             */
-/*   Updated: 2017/05/03 17:35:58 by rili             ###   ########.fr       */
+/*   Updated: 2017/05/03 20:36:22 by rili             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static char			**get_graph(char *str)
 	return (arr);
 }
 
-static t_point		*new_point(int x, int y)
+t_point				*new_point(int x, int y)
 {
 	t_point	*new;
 

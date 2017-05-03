@@ -6,7 +6,7 @@
 /*   By: rili <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 14:14:57 by rili              #+#    #+#             */
-/*   Updated: 2017/05/03 19:28:41 by rili             ###   ########.fr       */
+/*   Updated: 2017/05/03 20:42:44 by rili             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_board		*new_board(int size)
 	return (new);
 }
 
-static void		put_tetris(t_board *board, t_tetri *tetri, int x, int y, char s)
+static void	put_tetris(t_board *board, t_tetri *tetri, t_point *p, char s)
 {
 	int	i;
 	int	j;
@@ -52,14 +52,14 @@ static void		put_tetris(t_board *board, t_tetri *tetri, int x, int y, char s)
 		while (j <= tetri->max->y)
 		{
 			if (tetri->graph[i][j] == '#')
-				board->arr[x + i - mi][y + j - mj] = s;
+				board->arr[p->x + i - mi][p->y + j - mj] = s;
 			j++;
 		}
 		i++;
 	}
 }
 
-int		placeable(t_board *board, t_tetri *tetri, int x, int y)
+int			placeable(t_board *board, t_tetri *tetri, int x, int y)
 {
 	int	i;
 	int	j;
@@ -81,36 +81,29 @@ int		placeable(t_board *board, t_tetri *tetri, int x, int y)
 		}
 		i++;
 	}
-	put_tetris(board, tetri, x, y, tetri->seq);
+	put_tetris(board, tetri, new_point(x, y), tetri->seq);
 	return (1);
 }
 
-int			solve_board(t_board *board, t_tetri **tetris, int block, int current)
+int			solve_board(t_board *board, t_tetri **tetris, int block, int cur)
 {
 	int		i;
 	int		j;
-	int		w;
-	int		h;
-	t_tetri	*tetri;
 
-	if (current == block)
+	if (cur == block)
 		return (1);
-	tetri = (t_tetri*)malloc(sizeof(t_tetri));
-	tetri = tetris[current];
 	i = 0;
-	h = (tetri->max->x) - (tetri->min->x) + 1;
-	w = (tetri->max->y) - (tetri->min->y) + 1;
-	while (i < board->size - h + 1)
+	while (i < board->size - tetris[cur]->max->x + tetris[cur]->min->x)
 	{
 		j = 0;
-		while (j < board->size - w + 1)
+		while (j < board->size - tetris[cur]->max->y + tetris[cur]->min->y)
 		{
-			if (placeable(board, tetri, i, j))
+			if (placeable(board, tetris[cur], i, j))
 			{
-				if (solve_board(board, tetris, block, current + 1))
+				if (solve_board(board, tetris, block, cur + 1))
 					return (1);
 				else
-					put_tetris(board, tetri, i, j, '.');
+					put_tetris(board, tetris[cur], new_point(i, j), '.');
 			}
 			j++;
 		}

@@ -6,7 +6,7 @@
 /*   By: rili <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 17:18:32 by rili              #+#    #+#             */
-/*   Updated: 2017/05/03 19:24:35 by rili             ###   ########.fr       */
+/*   Updated: 2017/05/03 20:31:18 by rili             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,14 @@ int		main(int argc, char **argv)
 		}
 		block = (ft_strlen(input) + 1) / 21;
 		tetris = change_data_structure(str_truncate(input), block);
-//		print_tetri(tetris, block);
 		board = solve(tetris, block);
 		ft_print_words_tables(board->arr, board->size);
-		//free_board(*board);
+		free_board(board);
 		return (0);
 	}
 	else
 	{
 		ft_putstr("usage: fillit input_file\n");
 	}
-		return (1);
+	return (1);
 }

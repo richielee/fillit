@@ -6,7 +6,7 @@
 /*   By: rili <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 16:22:57 by rili              #+#    #+#             */
-/*   Updated: 2017/05/03 19:26:29 by rili             ###   ########.fr       */
+/*   Updated: 2017/05/03 20:33:29 by rili             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ t_tetri			**change_data_structure(char **arr, int block);
 void			print_tetri(t_tetri **input, int block);
 void			free_board(t_board *board);
 void			ft_print_words_tables(char **tab, int size);
+t_point			*new_point(int x, int y);
 int				ft_abs(int n);
 #endif
