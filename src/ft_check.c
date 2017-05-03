@@ -6,7 +6,7 @@
 /*   By: rili <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 18:31:17 by rili              #+#    #+#             */
-/*   Updated: 2017/05/03 21:26:04 by rili             ###   ########.fr       */
+/*   Updated: 2017/05/03 21:55:53 by rili             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,22 +75,24 @@ static int		coordinate_check(t_point *hash)
 
 	i = 0;
 	j = 0;
-	answer = 1;
 	while (i < 4)
 	{
+		answer = 0;
 		while (j < 4)
 		{
 			if (i != j)
 			{
 				distance = ft_abs(hash[i].x - hash[j].x) + \
 						ft_abs(hash[i].y - hash[j].y);
-				answer *= distance < 4;
+				answer += distance;
 			}
+			if (answer > 6)
+				return (0);
 			j++;
 		}
 		i++;
 	}
-	return (answer);
+	return (1);
 }
 
 static int		check_spaces(char *read, int block)
