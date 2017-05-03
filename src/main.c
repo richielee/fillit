@@ -6,7 +6,7 @@
 /*   By: rili <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 17:18:32 by rili              #+#    #+#             */
-/*   Updated: 2017/04/29 14:58:57 by rili             ###   ########.fr       */
+/*   Updated: 2017/05/03 16:18:49 by rili             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ int		count_n(char *input)
 int		main(int argc, char **argv)
 {
 	char	*input;
-	t_board	board;
+	t_board	*board;
+	int		block;
+	t_tetri	**test;
 
 	if (argc == 2)
 	{
@@ -41,10 +43,17 @@ int		main(int argc, char **argv)
 			ft_putstr("error\n");
 			return (1);
 		}
-		ft_print_words_tables(str_truncate(input));
+		block = (ft_strlen(input) + 1) / 21;
+		//ft_print_words_tables(str_truncate(input));
+		printf("still alive\n");
+		test = change_data_structure(str_truncate(input), block);
+		printf("still alive after test\n");
+		print_tetri(test, block);
 		board = solve(str_truncate(input));
-		ft_print_words_tables(board->arr);
-		free(board);
+		printf("still alive\n");
+		ft_print_words_tables(board->arr, board->size);
+		printf("still alive\n");
+		//free_board(*board);
 		return (0);
 	}
 	else

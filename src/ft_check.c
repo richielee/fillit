@@ -6,7 +6,7 @@
 /*   By: rili <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 18:31:17 by rili              #+#    #+#             */
-/*   Updated: 2017/04/29 15:28:42 by rili             ###   ########.fr       */
+/*   Updated: 2017/05/03 16:47:32 by rili             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,7 @@ static int	coordinate_check(t_point *hash)
 {
 	int i;
 	int j;
-	int x;
-	int y;
+	int distance;
 	int answer;
 
 	i = 0;
@@ -81,9 +80,9 @@ static int	coordinate_check(t_point *hash)
 		{
 			if (i != j)
 			{
-				x = ft_abs(hash[i].x - hash[j].x) <= 1;
-				y = ft_abs(hash[i].y - hash[j].y) <= 1;
-				answer *= x * y;
+				distance = ft_abs(hash[i].x - hash[j].x) + \
+						   ft_abs(hash[i].y - hash[j].y);
+				answer *= distance < 4;
 			}
 			j++;
 		}
@@ -95,22 +94,27 @@ static int	coordinate_check(t_point *hash)
 static int	neighbor_check(char **arr)
 {
 	int i;
-	int answer;
 
 	i = 0;
-	answer = 1;
 	while (arr[i])
 	{
-		answer *= coordinate_check(arr[i]);
+		if (!coordinate_check(assign_hash_positions(arr[i])))
+			return (0);
 		i++;
 	}
-	return (answer);
+	return (1);
 }
 
 int	ft_check(char *read)
 {
 	if (!block_check(read))
+	{
+		ft_putstr("block_check said no\n");
 		return (0);
+	}
 	else
-		return (neighbor_check(truncate(read)));
+	{
+		ft_putstr("neighbor_check said no\n");
+		return (neighbor_check(str_truncate(read)));
+	}
 }
