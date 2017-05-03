@@ -6,13 +6,13 @@
 /*   By: rili <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 15:29:11 by rili              #+#    #+#             */
-/*   Updated: 2017/05/03 16:30:38 by rili             ###   ########.fr       */
+/*   Updated: 2017/05/03 17:35:58 by rili             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fillit.h"
 
-static char		**get_graph(char *str)
+static char			**get_graph(char *str)
 {
 	int		i;
 	char	**arr;
@@ -95,7 +95,7 @@ static t_point		*get_min(char **arr)
 	return (min);
 }
 
-t_tetri		**change_data_structure(char **arr, int block)
+t_tetri				**change_data_structure(char **arr, int block)
 {
 	int		i;
 	t_tetri	**new;
@@ -108,6 +108,7 @@ t_tetri		**change_data_structure(char **arr, int block)
 		new[i]->graph = get_graph(arr[i]);
 		new[i]->min = get_min(new[i]->graph);
 		new[i]->max = get_max(new[i]->graph);
+		new[i]->seq = 'A' + i;
 		i++;
 	}
 	return (new);

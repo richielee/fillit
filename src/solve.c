@@ -6,7 +6,7 @@
 /*   By: rili <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 14:14:57 by rili              #+#    #+#             */
-/*   Updated: 2017/05/03 16:15:46 by rili             ###   ########.fr       */
+/*   Updated: 2017/05/03 18:57:09 by rili             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,42 +36,108 @@ t_board		*new_board(int size)
 	return (new);
 }
 
-int		get_upper_left(char *tetri)
+static void		put_tetris(t_board *board, t_tetri *tetri, int x, int y, char s)
 {
-	int i;
+	int	i;
+	int	j;
+	int	mi;
+	int	mj;
 
-	i = 0;
-	while (tetri[i])
+	mi = tetri->min->x;
+	mj = tetri->min->y;
+	i = mi;
+	while (i < tetri->max->x)
 	{
-		if (tetri[i] == '#')
-			return (i);
+		j = mj;
+		while (j < tetri->max->y)
+		{
+			if (tetri->graph[i][j] == '#')
+				board->arr[x + i - mi][y + j - mj] = s;
+			j++;
+		}
 		i++;
 	}
-	return (-1);
 }
-/*
-int		placeable(t_board *board, char *tetri, int x, int y, int upper_left)
-{
-	int i;
-	int j;
 
-	i = upper_left / 5;
-	while (i < 4)
+int		placeable(t_board *board, t_tetri *tetri, int x, int y)
+{
+	int	i;
+	int	j;
+	int	mi;
+	int	mj;
+
+	mi = tetri->min->x;
+	mj = tetri->min->y;
+	i = mi;
+	while (i < tetri->max->x)
 	{
-		j = upper_left % 5;
-		while (j < 4)
+		j = mj;
+		while (j < tetri->max->y)
 		{
-			if (tetri[5 * i + j] == '#'
+			if (tetri->graph[i][j] == '#' && \
+					board->arr[x + i - mi][y + j - mj] != '.')
+				return (0);
+			j++;
 		}
+		i++;
 	}
-}*/
-t_board		*solve(char **s)
+	put_tetris(board, tetri, x, y, tetri->seq);
+	return (1);
+}
+
+int			solve_board(t_board *board, t_tetri **tetris, int block, int current)
+{
+	int		i;
+	int		j;
+	int		w;
+	int		h;
+	t_tetri	*tetri;
+
+	if (current == block)
+		return (1);
+	tetri = (t_tetri*)malloc(sizeof(t_tetri));
+	tetri = tetris[current];
+	i = 0;
+	h = (tetri->max->x) - (tetri->min->x) + 1;
+	w = (tetri->max->y) - (tetri->min->y) + 1;
+	while (i < board->size - w + 1)
+	{
+		j = 0;
+		while (j < board->size - h + 1)
+		{
+			if (placeable(board, tetri, i, j))
+			{
+				if (solve_board(board, tetris, block, current + 1))
+					return (1);
+				else
+					put_tetris(board, tetri, i, j, '.');
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+t_board		*solve(t_tetri **tetris, int block)
 {
 	int		size;
 	t_board	*board;
 
 	size = 4;
-	(void)s;
 	board = new_board(size);
+	ft_putstr("new_board assigned\n");
+	while (!solve_board(board, tetris, block, 0))
+	{
+		ft_putstr("current size is :");
+		ft_putnbr(size);
+		ft_putstr("\n");
+		size++;
+		free_board(board);
+		board = new_board(size);
+	}
+	ft_putstr("the size of the board is ");
+	ft_putnbr(size);
+	ft_putstr("\n");
 	return (board);
 }

@@ -6,14 +6,14 @@
 /*   By: rili <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 18:31:17 by rili              #+#    #+#             */
-/*   Updated: 2017/05/03 16:47:32 by rili             ###   ########.fr       */
+/*   Updated: 2017/05/03 17:19:41 by rili             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/libft.h"
 #include "../includes//fillit.h"
 
-static int	block_check(char *read)
+static int		block_check(char *read)
 {
 	int dot;
 	int hash;
@@ -39,7 +39,7 @@ static int	block_check(char *read)
 	return (1);
 }
 
-static t_point*	assign_hash_positions(char *str)
+static t_point	*assign_hash_positions(char *str)
 {
 	int		i;
 	int		c;
@@ -64,7 +64,7 @@ static t_point*	assign_hash_positions(char *str)
 	return (hashes);
 }
 
-static int	coordinate_check(t_point *hash)
+static int		coordinate_check(t_point *hash)
 {
 	int i;
 	int j;
@@ -81,7 +81,7 @@ static int	coordinate_check(t_point *hash)
 			if (i != j)
 			{
 				distance = ft_abs(hash[i].x - hash[j].x) + \
-						   ft_abs(hash[i].y - hash[j].y);
+						ft_abs(hash[i].y - hash[j].y);
 				answer *= distance < 4;
 			}
 			j++;
@@ -91,7 +91,7 @@ static int	coordinate_check(t_point *hash)
 	return (answer);
 }
 
-static int	neighbor_check(char **arr)
+static int		neighbor_check(char **arr)
 {
 	int i;
 
@@ -105,16 +105,10 @@ static int	neighbor_check(char **arr)
 	return (1);
 }
 
-int	ft_check(char *read)
+int				ft_check(char *read)
 {
 	if (!block_check(read))
-	{
-		ft_putstr("block_check said no\n");
 		return (0);
-	}
 	else
-	{
-		ft_putstr("neighbor_check said no\n");
 		return (neighbor_check(str_truncate(read)));
-	}
 }

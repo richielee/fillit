@@ -6,7 +6,7 @@
 /*   By: rili <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 16:22:57 by rili              #+#    #+#             */
-/*   Updated: 2017/05/03 16:14:25 by rili             ###   ########.fr       */
+/*   Updated: 2017/05/03 18:28:49 by rili             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,16 @@ typedef struct	s_tetri
 	t_point	*min;
 	t_point	*max;
 	char	**graph;
+	char	seq;
 }				t_tetri;
 char			*ft_read(char *file);
 int				ft_check(char *s);
-void			error_msg(void);
 char			**str_truncate(char *str);
 t_board			*new_board(int size);
-t_board			*solve(char **s);
+t_board			*solve(t_tetri **tetris, int block);
 t_tetri			**change_data_structure(char **arr, int block);
 void			print_tetri(t_tetri **input, int block);
-//void			free_board(*t_board);
-void	ft_print_words_tables(char **tab, int size);
-int		ft_abs(int n);
+void			free_board(t_board *board);
+void			ft_print_words_tables(char **tab, int size);
+int				ft_abs(int n);
 #endif

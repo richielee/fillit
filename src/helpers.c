@@ -6,7 +6,7 @@
 /*   By: rili <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/29 15:28:47 by rili              #+#    #+#             */
-/*   Updated: 2017/05/03 15:18:37 by rili             ###   ########.fr       */
+/*   Updated: 2017/05/03 18:28:55 by rili             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,18 @@ char	**str_truncate(char *str)
 	}
 	arr[i] = 0;
 	return (arr);
+}
+
+void	free_board(t_board *board)
+{
+	int i;
+
+	i = 0;
+	while (i < board->size)
+	{
+		ft_memdel((void **)&(board->arr[i]));
+		i++;
+	}
+	ft_memdel((void **)&(board->arr));
+	ft_memdel((void **)&(board));
 }

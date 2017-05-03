@@ -6,11 +6,10 @@
 /*   By: rili <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 16:25:48 by rili              #+#    #+#             */
-/*   Updated: 2017/05/03 15:07:13 by rili             ###   ########.fr       */
+/*   Updated: 2017/05/03 17:18:14 by rili             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/libft.h"
 #include "../includes/fillit.h"
 
 char	*ft_read(char *file)
@@ -22,22 +21,17 @@ char	*ft_read(char *file)
 	char	*tmp;
 	int		fd;
 
-	if (!(buf = (char*)malloc(sizeof(char) * 2)))
-		return (NULL);
-	if (!(receivedstring = (char*)malloc(sizeof(char) * 1)))
-		return (NULL);
+	buf = ft_memalloc(sizeof(char) * 2);
+	receivedstring = ft_memalloc(sizeof(char));
 	receivedstring[0] = '\0';
 	i = 1;
 	fd = open(file, O_RDONLY);
 	while ((ret = read(fd, buf, 1)) != 0)
 	{
 		buf[ret] = '\0';
-		if (!(tmp = (char*)malloc(sizeof(char) * i + 1)))
-			return (NULL);
+		tmp = ft_memalloc(sizeof(char) * i + 1);
 		ft_strcpy(tmp, receivedstring);
-		if (!(receivedstring = (char*)malloc(sizeof(char) *
-						(ft_strlen(tmp) + 2))))
-			return (NULL);
+		receivedstring = ft_memalloc(sizeof(char) * (ft_strlen(tmp) + 2));
 		receivedstring = ft_strcat(tmp, buf);
 		i++;
 	}

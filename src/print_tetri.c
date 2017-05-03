@@ -6,7 +6,7 @@
 /*   By: rili <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 16:09:00 by rili              #+#    #+#             */
-/*   Updated: 2017/05/03 16:47:47 by rili             ###   ########.fr       */
+/*   Updated: 2017/05/03 17:36:42 by rili             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ void		print_tetri(t_tetri **input, int block)
 		ft_putpoint(input[i]->min);
 		ft_putstr("max_x, max_y: \n");
 		ft_putpoint(input[i]->max);
+		ft_putstr("seq is:");
+		ft_putchar(input[i]->seq);
+		ft_putchar('\n');
 		i++;
 	}
 }
