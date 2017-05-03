@@ -6,7 +6,7 @@
 /*   By: rili <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 14:14:57 by rili              #+#    #+#             */
-/*   Updated: 2017/05/03 19:25:25 by rili             ###   ########.fr       */
+/*   Updated: 2017/05/03 19:28:41 by rili             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ t_board		*solve(t_tetri **tetris, int block)
 	int		size;
 	t_board	*board;
 
-	size = 4;
+	size = 3;
 	board = new_board(size);
 	while (!solve_board(board, tetris, block, 0))
 	{
