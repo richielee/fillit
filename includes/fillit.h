@@ -6,7 +6,7 @@
 /*   By: rili <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 16:22:57 by rili              #+#    #+#             */
-/*   Updated: 2017/05/03 20:33:29 by rili             ###   ########.fr       */
+/*   Updated: 2017/05/03 21:29:39 by rili             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 # include <unistd.h>
 # include <sys/types.h>
 # include <stdlib.h>
-#include <sys/uio.h>
-#include <fcntl.h>
-#include "../lib/libft.h"
+# include <sys/uio.h>
+# include <fcntl.h>
+# include "../lib/libft.h"
 
 typedef struct	s_point
 {
@@ -37,7 +37,7 @@ typedef struct	s_tetri
 	char	seq;
 }				t_tetri;
 char			*ft_read(char *file);
-int				ft_check(char *s);
+int				ft_check(char *s, int block);
 char			**str_truncate(char *str);
 t_board			*new_board(int size);
 t_board			*solve(t_tetri **tetris, int block);

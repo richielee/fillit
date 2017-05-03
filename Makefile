@@ -6,7 +6,7 @@
 #    By: rili <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/26 17:12:37 by rili              #+#    #+#              #
-#    Updated: 2017/05/03 19:03:34 by rili             ###   ########.fr        #
+#    Updated: 2017/05/03 21:28:20 by rili             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ clean :
 		make clean -C ./lib/
 fclean: clean
 		rm -f $(NAME)
-		make clean -C ./lib/
+		make fclean -C ./lib/
 
 re: fclean all
 

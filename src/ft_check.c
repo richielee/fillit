@@ -6,7 +6,7 @@
 /*   By: rili <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 18:31:17 by rili              #+#    #+#             */
-/*   Updated: 2017/05/03 17:19:41 by rili             ###   ########.fr       */
+/*   Updated: 2017/05/03 21:26:04 by rili             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,13 @@ static int		block_check(char *read)
 			hash++;
 		else if (*read == '\n')
 			end++;
+		else
+			return (0);
 		read++;
 	}
 	if (dot < 4)
 		return (0);
-	if (dot % 4 || hash % 4 || (end + 1) % 5)
+	if (dot % 4 || hash % 4 || (end + 1) % 5 || !hash)
 		return (0);
 	return (1);
 }
@@ -91,24 +93,37 @@ static int		coordinate_check(t_point *hash)
 	return (answer);
 }
 
-static int		neighbor_check(char **arr)
+static int		check_spaces(char *read, int block)
 {
 	int i;
 
 	i = 0;
-	while (arr[i])
+	while (i < (block - 1))
 	{
-		if (!coordinate_check(assign_hash_positions(arr[i])))
+		if (read[21 * (i + 1) - 1] != '\n')
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-int				ft_check(char *read)
+int				ft_check(char *read, int block)
 {
-	if (!block_check(read))
+	int		i;
+	char	**arr;
+
+	i = 0;
+	if (!block_check(read) || !check_spaces(read, block))
 		return (0);
 	else
-		return (neighbor_check(str_truncate(read)));
+	{
+		arr = str_truncate(read);
+		while (arr[i])
+		{
+			if (!coordinate_check(assign_hash_positions(arr[i])))
+				return (0);
+			i++;
+		}
+		return (1);
+	}
 }
