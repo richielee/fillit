@@ -1,4 +1,5 @@
 # fillit
+Penultimate project before branching out.
 
 Given an array of Tetrominos, the programme will return the smallest square that would contain all the Tetrominos. 
 
