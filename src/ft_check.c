@@ -6,7 +6,7 @@
 /*   By: rili <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 18:31:17 by rili              #+#    #+#             */
-/*   Updated: 2017/05/03 21:55:53 by rili             ###   ########.fr       */
+/*   Updated: 2017/05/05 14:10:11 by rili             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,35 +66,6 @@ static t_point	*assign_hash_positions(char *str)
 	return (hashes);
 }
 
-static int		coordinate_check(t_point *hash)
-{
-	int i;
-	int j;
-	int distance;
-	int answer;
-
-	i = 0;
-	j = 0;
-	while (i < 4)
-	{
-		answer = 0;
-		while (j < 4)
-		{
-			if (i != j)
-			{
-				distance = ft_abs(hash[i].x - hash[j].x) + \
-						ft_abs(hash[i].y - hash[j].y);
-				answer += distance;
-			}
-			if (answer > 6)
-				return (0);
-			j++;
-		}
-		i++;
-	}
-	return (1);
-}
-
 static int		check_spaces(char *read, int block)
 {
 	int i;
@@ -108,6 +79,44 @@ static int		check_spaces(char *read, int block)
 	}
 	return (1);
 }
+
+static int		coordinate_check(t_point *hash)
+{
+	int i;
+	int j;
+	int distance;
+	int neighbor_count;
+
+	i = 0;
+	neighbor_count = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			if (i != j)
+			{
+				distance = ft_abs(hash[i].x - hash[j].x) \
+						+ ft_abs(hash[i].y - hash[j].y);
+				neighbor_count += (distance == 1);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (neighbor_count == 6 || neighbor_count == 8);
+}
+
+/*
+** We start with block_check, which is a function that returns 1 if the input
+** is 'globally' acceptable. It checks for the number of '.', '#' and '\n'.
+** We then proceed to check that the '\n' separating the blocks are at the
+** right positions. Once the above are done, we then check that each block
+** represents a piece of valid tetri. This is done by first truncating the
+** input string into blocks, then iterating through each block to check if
+** the tetri is valid in each block. A tetri is valid when the sum of the
+** number of neighbors each '#' is either 6 or 8.
+*/
 
 int				ft_check(char *read, int block)
 {

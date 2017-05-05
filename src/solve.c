@@ -6,11 +6,15 @@
 /*   By: rili <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 14:14:57 by rili              #+#    #+#             */
-/*   Updated: 2017/05/03 20:42:44 by rili             ###   ########.fr       */
+/*   Updated: 2017/05/05 14:01:47 by rili             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fillit.h"
+
+/*
+** Generate a new board.
+*/
 
 t_board		*new_board(int size)
 {
@@ -36,6 +40,11 @@ t_board		*new_board(int size)
 	return (new);
 }
 
+/*
+** A function that places a t_tetri object at point p on the board.
+** This is achievable because board is passed by address.
+*/
+
 static void	put_tetris(t_board *board, t_tetri *tetri, t_point *p, char s)
 {
 	int	i;
@@ -59,7 +68,14 @@ static void	put_tetris(t_board *board, t_tetri *tetri, t_point *p, char s)
 	}
 }
 
-int			placeable(t_board *board, t_tetri *tetri, int x, int y)
+/*
+** A helper function to determine whether an item can be placed in the x, y
+** postion. If the item can be placed, the function  tentatively place the
+** item by calling the function put_tetris and return 1. Otherwise the
+** function return 0.
+*/
+
+static int	placeable(t_board *board, t_tetri *tetri, int x, int y)
 {
 	int	i;
 	int	j;
@@ -85,7 +101,17 @@ int			placeable(t_board *board, t_tetri *tetri, int x, int y)
 	return (1);
 }
 
-int			solve_board(t_board *board, t_tetri **tetris, int block, int cur)
+/*
+** Implementation of the backtracking algorithm. We assume that the current
+** configuration is correct and proceed to place the item. By doing so
+** recursively, we could reach the end of **tetris, in which case we
+** claim that we have found the solution. We could also read to a state where
+** it is not possible to place the remaining item, in which case we would
+** abort the current configuration (thus backtrack) and try the next possible
+** configuration.
+*/
+
+static int	solve_board(t_board *board, t_tetri **tetris, int block, int cur)
 {
 	int		i;
 	int		j;

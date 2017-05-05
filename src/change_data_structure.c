@@ -6,7 +6,7 @@
 /*   By: rili <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 15:29:11 by rili              #+#    #+#             */
-/*   Updated: 2017/05/03 20:45:52 by rili             ###   ########.fr       */
+/*   Updated: 2017/05/05 14:04:58 by rili             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,15 @@ static t_point		*get_min(char **arr)
 	}
 	return (min);
 }
+
+/*
+** The desirable data structure should include the following information for
+** each piece of tetri:
+** 1. The graphical representation of the tetri in the form of char**.
+** 2. The upperleft, lowerleft, upperright and lowerright coordinates of the
+**    tetri.
+** 3. The character representation of the tetri. ('A' to 'Z')
+*/
 
 t_tetri				**change_data_structure(char **arr, int block)
 {

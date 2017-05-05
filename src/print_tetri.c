@@ -6,11 +6,17 @@
 /*   By: rili <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 16:09:00 by rili              #+#    #+#             */
-/*   Updated: 2017/05/03 19:16:36 by rili             ###   ########.fr       */
+/*   Updated: 2017/05/05 13:54:59 by rili             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fillit.h"
+
+/*
+** The function print_tetri prints each block of the original file,
+** the min and max of x and y, and the corresponding character.
+** This is mainly used for debugging.
+*/
 
 static void	ft_putpoint(t_point *point)
 {
