@@ -5,20 +5,20 @@ Given an array of Tetrominos, the programme will return the smallest square that
 
 Example input:
 ```
-....$\n
-##..$\n
-.#..$\n
-.#..$\n
+....$
+##..$
+.#..$
+.#..$
 $
-....$\n
-####$\n
-....$\n
-....$\n
+....$
+####$
+....$
+....$
 $
-#...$\n
-###.$\n
-....$\n
-....$\n
+#...$
+###.$
+....$
+....$
 $
 ....$ 
 ##..$ 
