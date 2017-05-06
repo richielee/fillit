@@ -32,4 +32,4 @@ CDDA$
 CCCA$ 
 BBBB$ 
 ```
-Where 'A', 'B', 'C' and 'D' represents the order of the Tetrominos. 
+Where 'A', 'B', 'C' and 'D' represent the order of the Tetrominos. 
